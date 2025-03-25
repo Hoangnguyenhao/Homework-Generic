@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Managers;
 
 class Program
@@ -6,23 +6,22 @@ class Program
     static void Main()
     {
         StudentManager studentManager = new StudentManager();
+        int choice;
 
-        while (true)
+        do
         {
-            Console.WriteLine("\n=== He Thong Quan Ly Sinh Vien ===");
-            Console.WriteLine("1. Them sinh vien");
-            Console.WriteLine("2. Danh sach sinh vien");
-            Console.WriteLine("3. Cap nhat sinh vien");
-            Console.WriteLine("4. Xoa sinh vien");
-            Console.WriteLine("5. Thoat");
-            Console.Write("Chon mot tuy chon: ");
+            Console.Clear();
+            Console.WriteLine("===== QUAN LY SINH VIEN =====");
+            Console.WriteLine("1 - Them sinh vien");
+            Console.WriteLine("2 - Xem danh sach");
+            Console.WriteLine("3 - Cap nhat thong tin");
+            Console.WriteLine("4 - Xoa sinh vien");
+            Console.WriteLine("5 - Thoat");
+            Console.Write("\nChon: ");
 
-
-            if (!int.TryParse(Console.ReadLine(), out int choice))
-            {
-                Console.WriteLine("Invalid input. Please enter a number between 1 and 5.");
-                continue;
-            }
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+            choice = keyInfo.KeyChar - '0'; 
+            Console.WriteLine();
 
             switch (choice)
             {
@@ -39,12 +38,13 @@ class Program
                     studentManager.DeleteStudent();
                     break;
                 case 5:
-                    Console.WriteLine("Exiting program...");
-                    return;
+                    Console.WriteLine("\nThoat chuong trinh...");
+                    break;
                 default:
-                    Console.WriteLine("Invalid choice, please try again.");
+                    Console.WriteLine("\nLua chon khong hop le! Nhan phim bat ky de thu lai...");
+                    Console.ReadKey();
                     break;
             }
-        }
+        } while (choice != 5);
     }
 }
