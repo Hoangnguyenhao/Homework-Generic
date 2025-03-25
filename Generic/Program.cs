@@ -11,18 +11,24 @@ class Program
         do
         {
             Console.Clear();
-            Console.WriteLine("===== QUAN LY SINH VIEN =====");
+            Console.WriteLine("===== QUAN LY SINH VIEN =====\n");
             Console.WriteLine("1 - Them sinh vien");
             Console.WriteLine("2 - Xem danh sach");
             Console.WriteLine("3 - Cap nhat thong tin");
             Console.WriteLine("4 - Xoa sinh vien");
             Console.WriteLine("5 - Thoat");
-            Console.Write("\nChon: ");
+            Console.Write("\nNhap lua chon: ");
 
-            ConsoleKeyInfo keyInfo = Console.ReadKey();
-            choice = keyInfo.KeyChar - '0'; 
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out choice) || choice < 1 || choice > 5)
+            {
+                Console.WriteLine("\nLua chon khong hop le! Nhan Enter de thu lai...");
+                Console.ReadLine();
+                continue;
+            }
+
             Console.WriteLine();
-
             switch (choice)
             {
                 case 1:
@@ -38,13 +44,13 @@ class Program
                     studentManager.DeleteStudent();
                     break;
                 case 5:
-                    Console.WriteLine("\nThoat chuong trinh...");
-                    break;
-                default:
-                    Console.WriteLine("\nLua chon khong hop le! Nhan phim bat ky de thu lai...");
-                    Console.ReadKey();
+                    Console.WriteLine("\nThoat chuong trinh... Nhan Enter de ket thuc.");
+                    Console.ReadLine();
                     break;
             }
+
         } while (choice != 5);
     }
 }
+
+         
